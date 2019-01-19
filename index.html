@@ -11,15 +11,17 @@
     <h2>シャドバ勝率計算機</h2>
     <hr>
     <pre>
-勝利数=累計MP÷100
-敗北数=(累計MP-現在MP)÷100
+勝利数=累積BP÷100
+敗北数=(累積BP-現在MP)÷100
 勝率=勝利数÷(勝利数+敗北数)
+
+拡張予定：アンリミ、ローテを同時に入力してそれぞれ出す
 </pre>
     <br />
 
-    <div class="header">累計MP：</div><input type="number" id="summary" min=0>
+    <div class="header">累積BP：</div><input type="number" id="summary" min=0>
     <br />
-    <div class="header">ローテMP：</div><input type="number" id="rotation" min=0>
+    <div class="header">MP：</div><input type="number" id="rotation" min=0>
     <br />
     <!-- <div class="header">アンリミMP：</div><input type="number" id="unlimited" min=0>
 <br />
