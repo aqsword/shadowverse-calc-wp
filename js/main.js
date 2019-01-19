@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
     return x < 0 ? Math.ceil(x) : Math.floor(x);
   }
 
+  int = parseInt;
+
   var calc_win_avg = function () {
     win_num.innerText = Math.trunc(summary.value / 100);
     lose_num.innerText = Math.trunc((summary.value - rotation.value) / 100);
-    win_avg.innerText = (win_num.innerText / (win_num.innerText + lose_num.innerText)).toFixed(4) * 100;
+    win_avg.innerText = (int(win_num.innerText) / (int(win_num.innerText) + int(lose_num.innerText)) * 100).toFixed(4);
   }
 
 
