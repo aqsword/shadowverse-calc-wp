@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+  // ---- document variable 
   var summary = document.getElementById('summary');
   var single_mp = document.getElementById('single_mp');
   var rotation = document.getElementById('rotation');
@@ -13,25 +14,38 @@ document.addEventListener('DOMContentLoaded', function () {
   var win_un_avg = document.getElementById('win_un_avg');
 
   var single_radio = document.getElementById('single');
-  var double_radio = document.getElementById('double');
+  var all_radio = document.getElementById('all');
 
   var single_mode = document.getElementById('single_mode');
-  var double_mode = document.getElementById('double_mode');
+  var all_mode = document.getElementById('all_mode');
   var single_mode_display = document.getElementById('single_mode_display');
-  var double_mode_display = document.getElementById('double_mode_display');
+  var all_mode_display = document.getElementById('all_mode_display');
+  // ---- document variable end
 
   Math.trunc = Math.trunc || function (x) {
     return x < 0 ? Math.ceil(x) : Math.floor(x);
   }
 
   var init = function () {
-    double_mode.style.display = "none";
-    double_mode_display.style.display = "none";
+    all_mode.style.display = "none";
+    all_mode_display.style.display = "none";
   }
 
   int = parseInt;
 
+  var calc_win_single = function () {
+    win_num_single.innerText = Math.trunc(summary.value / 100);
+    lose_num_single.innerText = Math.trunc((summary.value - single_mp.value) / 100);
+    win_avg_single.innerText = (int(win_num_single.innerText) / (int(win_num_single.innerText) + int(lose_num_single.innerText)) * 100).toFixed(4);
+  }
+
+  var calc_win_all = function(){
+
+  }
+
+
   var calc_win_avg = function () {
+    calc_win_single();
     // ローテ、アンリミを加味した計算
     if (rotation.value != 0 && unlimited.value != 0) {
 
@@ -60,18 +74,22 @@ document.addEventListener('DOMContentLoaded', function () {
     calc_win_avg();
   }, false);
 
-  single_radio.addEventListener('click', function () {
-    single_mode.style.display = "block";
-    double_mode.style.display = "none";
-    single_mode_display.style.display = "block";
-    double_mode_display.style.display = "none";
+  single_mp.addEventListener('change', function () {
+    calc_win_single();
   }, false);
 
-  double_radio.addEventListener('click', function () {
+  single_radio.addEventListener('click', function () {
+    single_mode.style.display = "block";
+    all_mode.style.display = "none";
+    single_mode_display.style.display = "block";
+    all_mode_display.style.display = "none";
+  }, false);
+
+  all_radio.addEventListener('click', function () {
     single_mode.style.display = "none";
-    double_mode.style.display = "block";
+    all_mode.style.display = "block";
     single_mode_display.style.display = "none";
-    double_mode_display.style.display = "block";
+    all_mode_display.style.display = "block";
   }, false);
 
   init();

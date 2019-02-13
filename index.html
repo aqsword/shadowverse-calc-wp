@@ -15,23 +15,23 @@
         <div id="single_mode">
             <div class="header">MP：</div><input type="number" id="single_mp" min=0 value=0>
         </div>
-        <div id="double_mode">
+        <div id="all_mode">
             <div class="header">ローテMP：</div><input type="number" id="rotation" min=0 value=0>
             <br />
             <div class="header">アンリミMP：</div><input type="number" id="unlimited" min=0 value=0>
         </div>
         <input type="radio" id="single" name="mode" value="s" checked="checked"><label for="single">シングル</label>
-        <input type="radio" id="double" name="mode" value="d"><label for="double">ダブル</label>
+        <input type="radio" id="all" name="mode" value="d"><label for="all">オール</label>
         <hr />
         <div id="single_mode_display">
-            勝利数：<span id="win_num">0</span>
+            勝利数：<span id="win_num_single">0</span>
             <br />
-            敗北数：<span id="lose_num">0</span>
+            敗北数：<span id="lose_num_single">0</span>
             <br />
-            勝率：<span id="win_avg">0</span> %
+            勝率：<span id="win_avg_single">0</span> %
         </div>
 
-        <div id="double_mode_display">
+        <div id="all_mode_display">
             ローテ勝利数：<span id="win_num">0</span>
             <br />
             ローテ敗北数：<span id="lose_num">0</span>
