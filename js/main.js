@@ -39,27 +39,22 @@ document.addEventListener('DOMContentLoaded', function () {
     win_avg_single.innerText = (int(win_num_single.innerText) / (int(win_num_single.innerText) + int(lose_num_single.innerText)) * 100).toFixed(4);
   }
 
-  var calc_win_all = function(){
+  var calc_win_all = function () {
+    win_num_all.innerText = Math.trunc(summary.value / 100);
+    var min_rotation_win = Math.trunc(rotation.value / 100);
+    var min_unlimited_win = Math.trunc(unlimited.value / 100);
 
+    var max_rotation_win = Math.trunc((summary.value - unlimited.value) / 100);
+    var max_unlimited_win = Math.trunc((summary.value - rotation.value) / 100);
+
+    win_num.innerText = min_rotation_win + " ～ " + max_rotation_win; 
+    win_un_num.innerText = min_unlimited_win + " ～ " + max_unlimited_win; 
   }
 
 
   var calc_win_avg = function () {
     calc_win_single();
-    // ローテ、アンリミを加味した計算
-    if (rotation.value != 0 && unlimited.value != 0) {
-
-      // ローテーションだけで計算
-    } else if (rotation.value != 0 && unlimited.value == 0) {
-      win_num.innerText = Math.trunc(summary.value / 100);
-      lose_num.innerText = Math.trunc((summary.value - rotation.value) / 100);
-      win_avg.innerText = (int(win_num.innerText) / (int(win_num.innerText) + int(lose_num.innerText)) * 100).toFixed(4);
-      // アンリミだけで計算
-    } else if (rotation.value == 0 && unlimited.value != 0) {
-      win_un_num.innerText = Math.trunc(summary.value / 100);
-      lose_un_num.innerText = Math.trunc((summary.value - unlimited.value) / 100);
-      win_un_avg.innerText = (int(win_un_num.innerText) / (int(win_un_num.innerText) + int(lose_un_num.innerText)) * 100).toFixed(4);
-    }
+    calc_win_all();
   }
 
   summary.addEventListener('change', function () {
@@ -67,11 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }, false);
 
   rotation.addEventListener('change', function () {
-    calc_win_avg();
+    calc_win_all();
   }, false);
 
   unlimited.addEventListener('change', function () {
-    calc_win_avg();
+    calc_win_all();
   }, false);
 
   single_mp.addEventListener('change', function () {
