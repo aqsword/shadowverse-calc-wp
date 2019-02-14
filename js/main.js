@@ -40,17 +40,23 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   var calc_win_all = function () {
-    win_num_all.innerText = Math.trunc(summary.value / 100);
+    var win_all = Math.trunc(summary.value / 100);
     var min_rotation_win = Math.trunc(rotation.value / 100);
     var min_unlimited_win = Math.trunc(unlimited.value / 100);
 
     var max_rotation_win = Math.trunc((summary.value - unlimited.value) / 100);
     var max_unlimited_win = Math.trunc((summary.value - rotation.value) / 100);
 
-    win_num.innerText = min_rotation_win + " ～ " + max_rotation_win; 
-    win_un_num.innerText = min_unlimited_win + " ～ " + max_unlimited_win; 
-  }
+    win_num_all.innerText = win_all;
+    win_num.innerText = min_rotation_win + " ～ " + max_rotation_win;
+    win_un_num.innerText = min_unlimited_win + " ～ " + max_unlimited_win;
 
+    lose_num.innerText = "0 ～ " + (max_rotation_win - min_rotation_win);
+    lose_un_num.innerText = "0 ～ " + (max_unlimited_win - min_unlimited_win);
+
+    win_avg.innerText = (max_rotation_win / (max_rotation_win + max_rotation_win - min_rotation_win) * 100).toFixed(4) + " ～ 100";
+    win_un_avg.innerText = (max_unlimited_win / (max_unlimited_win + max_unlimited_win - min_unlimited_win) * 100).toFixed(4) + " ～ 100";
+  }
 
   var calc_win_avg = function () {
     calc_win_single();
